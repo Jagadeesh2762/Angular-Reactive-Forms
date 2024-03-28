@@ -1,0 +1,72 @@
+<div class="container">
+   <div class="row justify-content-center">
+
+    <div class="col-6 bg-light p-4 shadow-lg">
+        <h4 class="text-center">Contact Form</h4>
+
+        <form [formGroup]="contactForm" (submit)="onSubmit()" >
+            <p>
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName">
+                <span class="text-danger" *ngIf="!firstname?.valid && (firstname?.touched || firstname?.dirty)">
+                    <span *ngIf="firstname?.errors?.['required']">
+                        firstname required
+                    </span>
+                    <span *ngIf="firstname?.errors?.['minlength']">
+                        minimum length should be above 3 letters
+                    </span> 
+                </span>
+            </p>
+            <p>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName">
+            </p>
+            <p>
+                <label for="email">Email Id</label>
+                <input type="email" name="email" id="email" class="form-control" formControlName="email">
+            </p>
+            <div>   
+                <label for="gender">Gender</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" value="male" id="male"   name="gender" formControlName="gender">Male 
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" value="female" id="female" name="gender" formControlName="gender">Female
+                </div>
+            </div>
+            <p class="form-check ms-4 my-2">
+                <input class="form-check-input" type="checkbox" name="status" id="isMarried" formControlName="married">
+                <label class="form-check-label" for="status">Married</label>
+            </p>
+            <p>
+                <label for="country">Country</label>
+                <select name="country" id="country" class="form-select"  formControlName="country">
+                    <option value="">India</option>
+                    <option value="">USA</option>
+                    <option value="">England</option>
+                </select>
+            </p>
+            <div formGroupName="address">
+                <div class="form-group">
+                    <label for="city">city</label>
+                    <input type="text" name="city" id="city" class="form-control" formControlName="city">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" name="state" id="state" class="form-control" formControlName="state">
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" name="pincode" id="pincode" class="form-control" formControlName="pincode">
+                </div>
+
+            </div>
+            <p>
+                <input type="submit" [disabled]="!contactForm.valid" value="Submit" class="btn btn-primary">
+            </p>
+        </form>
+    </div>
+   </div>
+
+
+</div>
